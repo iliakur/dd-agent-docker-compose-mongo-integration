@@ -1,0 +1,14 @@
+
+services:
+  agent:
+    pid: host
+    environment:
+      - DD_API_KEY=$DD_API_KEY
+      - DD_SITE=datadoghq.com
+      - DD_HOSTNAME=mongodb-connectivity-test
+      - DD_LOG_LEVEL=DEBUG
+    volumes:
+      - ./mongo.d:/etc/datadog-agent/conf.d/mongo.d
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
